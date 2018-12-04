@@ -10,7 +10,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -q \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
-        libpng12-dev \
         libcurl4-nss-dev \
         libicu-dev \
         libxslt-dev \
@@ -34,3 +33,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -q \
     && docker-php-ext-install intl \
     && cd /tmp \
 CMD ["/usr/local/sbin/php-fpm", "--nodaemonize"]
+
+RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer --version
+
+RUN apt-get install -y vim
