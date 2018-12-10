@@ -34,6 +34,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -q \
     && cd /tmp \
 CMD ["/usr/local/sbin/php-fpm", "--nodaemonize"]
 
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
+
 RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
 
